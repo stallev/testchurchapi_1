@@ -112,5 +112,6 @@ export async function getStaticProps({ locale }) {
       page,
       posts,
     },
+    revalidate: 10,
   };
 }
