@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 
 import { getApolloClient } from "../../lib/apollo-client";
@@ -7,6 +8,9 @@ import { getApolloClient } from "../../lib/apollo-client";
 import styles from "../../styles/Home.module.css";
 
 export default function Post({ post, site }) {
+  const router = useRouter();
+  console.log('router', router);
+  console.log('post', post);
   return (
     <div className={styles.container}>
       <Head>
@@ -134,7 +138,7 @@ export async function getStaticPaths({ locales }) {
 
   return {
     paths: [
-      // ...paths,
+      ...paths,
       ...paths.flatMap((path) => {
         return locales.map((locale) => {
           return {
@@ -144,7 +148,7 @@ export async function getStaticPaths({ locales }) {
         });
       }),
     ],
-    // paths: [],
+    paths: [],
     fallback: "blocking",
   };
 }
